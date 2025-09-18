@@ -1,0 +1,26 @@
+# Colores
+background-color=#1e1e2e
+text-color=#cdd6f4
+border-color=#89b4fa
+
+border-size=2
+border-radius=8
+padding=10
+margin=10
+
+anchor=top-right
+layer=overlay
+
+font=JetBrainsMono Nerd Font 11
+
+default-timeout=5000
+
+
+max-icon-size=64
+
+outer-margin=10
+
+[urgency=critical]
+background-color=#f38ba8
+text-color=#1e1e2e
+border-color=#f38ba8

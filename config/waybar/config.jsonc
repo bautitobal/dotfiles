@@ -1,0 +1,161 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-bottom": -10,
+    "spacing": 0,
+    "modules-left": [
+        "hyprland/workspaces",
+        "custom/uptime",
+        "cpu",
+        "memory"
+    ],
+    "modules-center": [
+        "clock",
+        "custom/weather"
+    ],
+    "modules-right": [
+        "custom/pomodoro",
+        "bluetooth",
+        "network",
+        "pulseaudio",
+        "backlight",
+        "battery"
+    ],
+    "hyprland/workspaces": {
+        "format": "{name}: {icon}",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        }
+    },
+    "bluetooth": {
+        "format": "󰂲",
+        "format-on": "{icon}",
+        "format-off": "{icon}",
+        "format-connected": "{icon}",
+        "format-icons": {
+            "on": "󰂯",
+            "off": "󰂲",
+            "connected": "󰂱"
+        },
+        "on-click": "blueman-manager",
+        "tooltip-format-connected": "{device_enumerate}"
+    },
+    "custom/music": {
+        "format": "  {}",
+        "escape": true,
+        "interval": 5,
+        "tooltip": false,
+        "exec": "playerctl metadata --format='{{ artist }} - {{ title }}'",
+        "on-click": "playerctl play-pause",
+        "max-length": 50
+    },
+    "clock": {
+        "timezone": "America/Buenos_Aires",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%H:%M:%S  -  %A, %d}",
+        "format-alt": "{:%d-%m-%y}",
+        "on-click-right": "notify-send -a 'Clock' 'Hoy es: ' \"$(date '+%d-%m-%y')\"",
+        "interval": 1
+    },
+    "custom/weather": {
+        "exec": "~/.config/waybar/scripts/weather.sh",
+        "interval": 1800,
+        "return-type": "json"
+    },
+    "network": {
+        "format-wifi": "󰤢",
+        "format-ethernet": "󰈀 ",
+        "format-disconnected": "󰤠 ",
+        "interval": 5,
+        "tooltip-format": "{essid} ({signalStrength}%)",
+        "on-click": "nm-connection-editor"
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+        "format-icons": [
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+        ],
+        "on-click": "kitty btop"
+    },
+    "memory": {
+        "interval": 30,
+        "format": "  {used:0.1f}G",
+        "tooltip-format": "  Memory: {used:0.1f}G/{total:0.1f}G"
+    },
+    "custom/uptime": {
+        "format": "{}",
+        "format-icon": [
+            ""
+        ],
+        "tooltip-format": "Uptime: {}",
+        "interval": 1600,
+        "exec": "$HOME/.config/waybar/scripts/uptime.sh"
+    },
+    "backlight": {
+        "format": "{icon}  {percent}%",
+        "format-icons": [
+            "",
+            "󰃜",
+            "󰃛",
+            "󰃞",
+            "󰃝",
+            "󰃟",
+            "󰃠"
+        ],
+        "tooltip": false
+    },
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": [
+                "",
+                "",
+                " "
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "battery": {
+        "interval": 2,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-full": "{icon}  {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "custom/lock": {
+        "tooltip": false,
+        "on-click": "sh -c '(sleep 0s; hyprlock)' & disown",
+        "format": ""
+    },
+    "custom/pomodoro": {
+        "format": "{}",
+        "return-type": "json",
+        "exec": "waybar-module-pomodoro --no-work-icons -w 50 -s 10 -l 20",
+        "on-click": "waybar-module-pomodoro toggle",
+        "on-click-right": "waybar-module-pomodoro reset"
+    }
+}
