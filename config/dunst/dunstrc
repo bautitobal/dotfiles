@@ -1,0 +1,57 @@
+
+[global]
+    # Fuente y estilo
+    font = JetBrainsMono Nerd Font 11
+
+    # Colores (estilo mako)
+    frame_color = "#89b4fa"
+    separator_color = frame
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+
+    # Bordes y layout
+    frame_width = 3 
+    corner_radius = 12
+    padding = 16
+    horizontal_padding = 16
+    text_icon_padding = 5
+    separator_height = 2
+    icon_position = left
+    max_icon_size = 64
+
+    # Posición y tamaño
+    width = 350
+    height = (10, 30)
+    offset = (10, 10)
+    origin = top-right
+    alignment = left
+
+    # Tiempo de vida de la notificación
+    idle_threshold = 120
+    timeout = 5
+    show_age_threshold = 60
+
+    # Comportamiento
+    transparency = 0
+    follow = mouse
+    sort = yes
+    indicate_hidden = yes
+    shrink = no
+
+[urgency_low]
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#89b4fa"
+    timeout = 5
+
+[urgency_normal]
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#89b4fa"
+    timeout = 5
+
+[urgency_critical]
+    background = "#f38ba8"
+    foreground = "#1e1e2e"
+    frame_color = "#f38ba8"
+    timeout = 0

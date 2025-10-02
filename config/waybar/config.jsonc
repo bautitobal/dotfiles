@@ -1,31 +1,175 @@
 {
-    "layer": "top",
-    "position": "top",
-    "margin-bottom": -10,
-    "spacing": 0,
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 24, // Waybar height (to be removed for auto height)
+    "spacing": 5,
     "modules-left": [
-        "hyprland/workspaces",
-        "custom/uptime",
-        "cpu",
-        "memory"
+        "custom/power",
+        "hyprland/workspaces"
+        //"hyprland/mode",
     ],
     "modules-center": [
         "clock",
-        "custom/weather"
+        "custom/weather" // remove if you dont use it
     ],
     "modules-right": [
-        "custom/pomodoro",
-        "bluetooth",
-        "network",
+        "tray",
+        "custom/pomodoro", // remove if you dont use it
+        "bluetooth", // remove if you dont use it
         "pulseaudio",
-        "backlight",
-        "battery"
+        "network",
+        "custom/spacer",
+        "power-profiles-daemon", // remove on PC
+        "cpu",
+        "memory",
+        "temperature",
+        "backlight", // remove on PC
+        "battery", // remove on PC
+        "custom/spacer"
     ],
+    // LAPTOP MODULES (REMOVE IF YOU DONT WANT IT)
+    "backlight": {
+        "format": "{icon}  {percent}%",
+        "format-icons": [
+            "",
+            "󰃜",
+            "󰃛",
+            "󰃞",
+            "󰃝",
+            "󰃟",
+            "󰃠"
+        ],
+        "tooltip": false
+    },
+    "battery": {
+        "interval": "10",
+        "states": {
+            "warning": 50,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-alt": "{time} {icon}",
+        "format-full": "{icon}",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+    "custom/pomodoro": {
+        "format": "{}",
+        "return-type": "json",
+        "exec": "waybar-module-pomodoro --no-work-icons -w 50 -s 10 -l 20",
+        "on-click": "waybar-module-pomodoro toggle",
+        "on-click-right": "waybar-module-pomodoro reset"
+    },
+    // END LAPTOP MODULES
     "hyprland/workspaces": {
+        "separate-outputs": true,
+        "disable-scroll": true,
+        "all-outputs": false,
+        "warp-on-scroll": false,
         "format": "{name}: {icon}",
         "format-icons": {
+            "urgent": "",
             "active": "",
             "default": ""
+        }
+    },
+    "keyboard-state": {
+        "interval": "10",
+        "numlock": true,
+        "capslock": true,
+        "format": {
+            "capslock": "Caps: {icon}  ",
+            "numlock": "Num: {icon}"
+        },
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "hyprland/submap": {
+        "format": "✌️ {}",
+        "max-length": 8,
+        "tooltip": false
+    },
+    "hyprland/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": [
+            "scratch",
+            ""
+        ],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+    "custom/music": {
+        "format": "  {}",
+        "escape": true,
+        "interval": 5,
+        "tooltip": false,
+        "exec": "playerctl metadata --format='{{ artist }} - {{ title }}'",
+        "on-click": "playerctl play-pause",
+        "max-length": 50
+    },
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "unknown-tag": "N/A",
+        "interval": 5,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 6,
+        "icons": {
+            "blueman": "bluetooth",
+            "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
         }
     },
     "bluetooth": {
@@ -41,55 +185,92 @@
         "on-click": "blueman-manager",
         "tooltip-format-connected": "{device_enumerate}"
     },
-    "custom/music": {
-        "format": "  {}",
-        "escape": true,
-        "interval": 5,
-        "tooltip": false,
-        "exec": "playerctl metadata --format='{{ artist }} - {{ title }}'",
-        "on-click": "playerctl play-pause",
-        "max-length": 50
-    },
     "clock": {
         "timezone": "America/Buenos_Aires",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%H:%M:%S  -  %A, %d}",
+        "format": "{:%H:%M - %A, %d}",
         "format-alt": "{:%d-%m-%y}",
         "on-click-right": "notify-send -a 'Clock' 'Hoy es: ' \"$(date '+%d-%m-%y')\"",
-        "interval": 1
+        "interval": 60
     },
     "custom/weather": {
         "exec": "~/.config/waybar/scripts/weather.sh",
         "interval": 1800,
         "return-type": "json"
     },
-    "network": {
-        "format-wifi": "󰤢",
-        "format-ethernet": "󰈀 ",
-        "format-disconnected": "󰤠 ",
-        "interval": 5,
-        "tooltip-format": "{essid} ({signalStrength}%)",
-        "on-click": "nm-connection-editor"
-    },
     "cpu": {
-        "interval": 1,
-        "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
-        "format-icons": [
-            "▁",
-            "▂",
-            "▃",
-            "▄",
-            "▅",
-            "▆",
-            "▇",
-            "█"
-        ],
-        "on-click": "kitty btop"
+        "format": "{usage}% ",
+        "tooltip": true
     },
     "memory": {
-        "interval": 30,
+        "interval": 5,
         "format": "  {used:0.1f}G",
         "tooltip-format": "  Memory: {used:0.1f}G/{total:0.1f}G"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 85,
+        "format-critical": "{temperatureC}°C {icon} CRITICAL",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": [
+            "",
+            "",
+            ""
+        ]
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-ethernet": "󰈀 ",
+        "format-linked": "{ifname} (No IP) 󰩟 ",
+        "format-disconnected": "Disconnected ⚠ ",
+        "on-click": "kitty nmtui",
+        "on-click-right": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon}  {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/media": {
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/power": {
+        "format": "󰣇",
+        "tooltip": false,
+        "on-click": "wlogout"
+    },
+    "custom/spacer": {
+        "format": " ",
+        "tooltip": false
     },
     "custom/uptime": {
         "format": "{}",
@@ -99,63 +280,5 @@
         "tooltip-format": "Uptime: {}",
         "interval": 1600,
         "exec": "$HOME/.config/waybar/scripts/uptime.sh"
-    },
-    "backlight": {
-        "format": "{icon}  {percent}%",
-        "format-icons": [
-            "",
-            "󰃜",
-            "󰃛",
-            "󰃞",
-            "󰃝",
-            "󰃟",
-            "󰃠"
-        ],
-        "tooltip": false
-    },
-    "pulseaudio": {
-        "format": "{icon}  {volume}%",
-        "format-muted": "",
-        "format-icons": {
-            "default": [
-                "",
-                "",
-                " "
-            ]
-        },
-        "on-click": "pavucontrol"
-    },
-    "battery": {
-        "interval": 2,
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}  {capacity}%",
-        "format-full": "{icon}  {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
-    },
-    "custom/lock": {
-        "tooltip": false,
-        "on-click": "sh -c '(sleep 0s; hyprlock)' & disown",
-        "format": ""
-    },
-    "custom/pomodoro": {
-        "format": "{}",
-        "return-type": "json",
-        "exec": "waybar-module-pomodoro --no-work-icons -w 50 -s 10 -l 20",
-        "on-click": "waybar-module-pomodoro toggle",
-        "on-click-right": "waybar-module-pomodoro reset"
     }
 }
