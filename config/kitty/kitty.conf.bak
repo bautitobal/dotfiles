@@ -1,5 +1,5 @@
 # ~/.config/kitty/kitty.conf
-# include themes/tokyo-night.conf
+include themes/tokyo-night.conf
 
 font_family	JetbrainsMono Nerd Font Mono
 bold_font	auto
@@ -23,9 +23,3 @@ input_delay      2
 tab_bar_style powerline
 tab_title_template "{fmt.bg.default}  {title}  "
 
-
-
-# BEGIN_KITTY_THEME
-# Noctalia
-include current-theme.conf
-# END_KITTY_THEME

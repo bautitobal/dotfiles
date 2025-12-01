@@ -70,7 +70,8 @@ window#waybar {
 #custom-pomodoro,
 #custom-power,
 #custom-media,
-#custom-uptime {
+#custom-uptime,
+#custom-stocks {
     padding: 0 6px;
     margin: 0 2px;
 }
@@ -94,7 +95,8 @@ window#waybar {
 #custom-pomodoro:hover,
 #custom-power:hover,
 #custom-media:hover,
-#custom-uptime:hover {
+#custom-uptime:hover
+#custom-stocks:hover {
     background: #434c5e;
     border-radius: 6px;
 }

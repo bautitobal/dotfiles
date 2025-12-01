@@ -5,7 +5,8 @@
     "spacing": 5,
     "modules-left": [
         "custom/power",
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "custom/stocks" // you need to clone github.com/bautitobal/waybar-stocks
         //"hyprland/mode",
     ],
     "modules-center": [
@@ -14,7 +15,7 @@
     ],
     "modules-right": [
         "tray",
-        "custom/pomodoro", // remove if you dont use it
+        "custom/pomodoro", // remove if you dont use it 
         "bluetooth", // remove if you dont use it
         "pulseaudio",
         "network",
@@ -280,5 +281,10 @@
         "tooltip-format": "Uptime: {}",
         "interval": 1600,
         "exec": "$HOME/.config/waybar/scripts/uptime.sh"
+    },
+    "custom/stocks": {
+        "exec": "~/proyectos/waybar-stocks/waybar-stocks --config /home/conan/proyectos/waybar-stocks/config.local.yml",
+        "return-type": "json",
+        "interval": 5
     }
 }

@@ -1,0 +1,37 @@
+# swaylock-effects configuration — by @bautitobal
+# Theme: Nord Detective aesthetic
+
+# General
+screenshots
+clock
+datestr=%d-%m-%Y
+indicator
+fade-in=0.3
+
+# Indicator appearance
+indicator-radius=120
+indicator-thickness=12
+
+# Effects
+effect-blur=7x5
+effect-vignette=0.5:0.5
+
+# Colors (Nord palette)
+ring-color=88c0d0
+key-hl-color=bf616a
+line-color=00000000
+inside-color=2e3440cc
+separator-color=00000000
+text-color=d8dee9
+
+# Fonts (optional — comment out if not installed)
+font=JetBrains Mono
+font-size=20
+
+# Layout
+indicator-caps-lock
+show-failed-attempts
+
+# Security
+ignore-empty-password
+
