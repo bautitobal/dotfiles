@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# ==========================
+#   MIC TOGGLE (PipeWire)
+# ==========================
+
+# Obtiene el estado actual del micrófono (mute/unmute)
+MUTED=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -o 'MUTED')
+
+if [ "$MUTED" = "MUTED" ]; then
+    # Si está muteado → activar
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0
+else
+    # Si está activado → mutear
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
+fi
+

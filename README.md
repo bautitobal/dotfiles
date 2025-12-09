@@ -61,6 +61,6 @@ cp -r wallpapers ~/Pictures/
 - Disclaimer: I DO NOT OWN ANY WALLPAPER, IT IS JUST A COLLECTION OF MY FAVORITES WALLPAPERS
 
 ## Credits
-- [Waybar](https://github.com/Prateek7071/dotfiles) - Used as a startup point
+- [Waybar](https://github.com/Prateek7071/dotfiles) - Used as a startup point for my Waybar config.
 - [Pomodoro module (from the Waybar to work)](https://github.com/Andeskjerf/waybar-module-pomodoro)
 

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# =======================================
+# Kill the currently focused window in Niri
+# =======================================
+
+INFO=$(niri msg focused-window 2>/dev/null)
+
+if [ -z "$INFO" ]; then
+    exit 1
+fi
+
+PID=$(echo "$INFO" | grep "PID:" | awk '{print $2}')
+
+if [ -z "$PID" ]; then
+    exit 1
+fi
+
+kill -9 "$PID"
+
