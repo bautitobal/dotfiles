@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/music-art"
+mkdir -p "$CACHE_DIR"
+
+LAST_KEY=""
+
+pick_player() {
+  mapfile -t players < <(playerctl -l 2>/dev/null || true)
+  [[ ${#players[@]} -eq 0 ]] && return 1
+
+  for p in "${players[@]}"; do [[ "$p" == "spotify" ]] && { echo "$p"; return 0; }; done
+  for p in "${players[@]}"; do
+    if playerctl -p "$p" status 2>/dev/null | grep -qi "Playing"; then
+      echo "$p"; return 0
+    fi
+  done
+  echo "${players[0]}"
+}
+
+# descarga cover si artUrl es http(s), devuelve path local (o vacío)
+get_art_local() {
+  local player="$1"
+  local track_id="$2"
+  local arturl="$3"
+
+  [[ -z "$arturl" ]] && return 0
+
+  # file:// -> usar directo
+  if [[ "$arturl" == file://* ]]; then
+    local p="${arturl#file://}"
+    [[ -f "$p" ]] && { echo "$p"; return 0; }
+    return 0
+  fi
+
+  # http(s) -> cache
+  if [[ "$arturl" == http://* || "$arturl" == https://* ]]; then
+    local key
+    key="$(printf "%s|%s|%s" "$player" "$track_id" "$arturl" | sha256sum | awk '{print $1}')"
+    local out="$CACHE_DIR/$key.jpg"
+
+    if [[ ! -s "$out" ]]; then
+      if command -v curl >/dev/null 2>&1; then
+        curl -fsSL --max-time 3 "$arturl" -o "$out" || rm -f "$out"
+      elif command -v wget >/dev/null 2>&1; then
+        wget -q --timeout=3 -O "$out" "$arturl" || rm -f "$out"
+      fi
+    fi
+
+    [[ -s "$out" ]] && { echo "$out"; return 0; }
+  fi
+}
+
+playerctl metadata --follow 2>/dev/null | while read -r _; do
+  PLAYER="$(pick_player || true)"
+  [[ -z "${PLAYER:-}" ]] && continue
+
+  TRACK_ID="$(playerctl -p "$PLAYER" metadata mpris:trackid 2>/dev/null || true)"
+  TITLE="$(playerctl -p "$PLAYER" metadata xesam:title 2>/dev/null || true)"
+  ARTIST="$(playerctl -p "$PLAYER" metadata xesam:artist 2>/dev/null | head -n1 || true)"
+  ARTURL="$(playerctl -p "$PLAYER" metadata mpris:artUrl 2>/dev/null || true)"
+
+  [[ -z "$TITLE" ]] && continue
+  KEY="${PLAYER}|${TRACK_ID:-$TITLE}"
+  [[ "$KEY" == "$LAST_KEY" ]] && continue
+  LAST_KEY="$KEY"
+
+  ICON_ARG=()
+  ART_LOCAL="$(get_art_local "$PLAYER" "${TRACK_ID:-$TITLE}" "$ARTURL" || true)"
+  if [[ -n "${ART_LOCAL:-}" && -f "$ART_LOCAL" ]]; then
+    ICON_ARG=(-i "$ART_LOCAL")
+  else
+    ICON_ARG=(-i "$PLAYER")
+  fi
+
+  notify-send "${ICON_ARG[@]}" -a "$PLAYER" "♪ $TITLE" "${ARTIST:-}" -t 3200
+done
+

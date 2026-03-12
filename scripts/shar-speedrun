@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PREFIX="$HOME/shar-speedrun"
+LIVESPLIT="$HOME/Games/tools/LiveSplit/LiveSplit.exe"
+MODLAUNCHER="$HOME/Games/tools/Lucas Mod Launcher/Lucas Simpsons Hit & Run Mod Launcher.exe"
+
+# Opcional: si usás GameMode
+GAMEMODE_BIN="$(command -v gamemoderun || true)"
+
+run_wine() {
+  local exe="$1"
+  if [[ -n "$GAMEMODE_BIN" ]]; then
+    env WINEPREFIX="$PREFIX" "$GAMEMODE_BIN" wine "$exe" >/dev/null 2>&1 &
+  else
+    env WINEPREFIX="$PREFIX" wine "$exe" >/dev/null 2>&1 &
+  fi
+}
+
+# Check básico
+[[ -d "$PREFIX" ]] || { echo "No existe el prefix: $PREFIX"; exit 1; }
+[[ -f "$LIVESPLIT" ]] || { echo "No existe LiveSplit: $LIVESPLIT"; exit 1; }
+[[ -f "$MODLAUNCHER" ]] || { echo "No existe Mod Launcher: $MODLAUNCHER"; exit 1; }
+
+# Arranco LiveSplit primero, después el launcher
+run_wine "$LIVESPLIT"
+sleep 0.6
+run_wine "$MODLAUNCHER"
+
+exit 0

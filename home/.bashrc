@@ -8,6 +8,7 @@ fi
 # PATH
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 export PATH="$PATH:$HOME/.spicetify"
+export TZ=America/Buenos_Aires
 
 # HISTORIAL (mejorado)
 export HISTSIZE=5000
@@ -31,7 +32,7 @@ alias c='clear'
 alias pacs='sudo pacman -S'
 alias pacr='sudo pacman -Rns'
 alias pacu='sudo pacman -Syu'
-alias paru='paru -S'
+alias parus='paru -S'
 alias paruu='paru -Syu'
 
 # Navegación rápida

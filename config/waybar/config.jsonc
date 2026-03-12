@@ -26,6 +26,7 @@
         "temperature",
         "backlight", // remove on PC
         "battery", // remove on PC
+        "custom/notifications",
         "custom/spacer"
     ],
     // LAPTOP MODULES (REMOVE IF YOU DONT WANT IT)
@@ -286,5 +287,29 @@
         "exec": "~/proyectos/waybar-stocks/waybar-stocks --config /home/conan/proyectos/waybar-stocks/config.local.yml",
         "return-type": "json",
         "interval": 5
+    },
+    
+    "custom/notifications": {
+        "tooltip": true,
+        "format": "<span size='16pt'>{icon}</span>",
+        "format-icons": {
+            "notification": "󱅫 ",
+            "none": "󰂜 ",
+            "dnd-notification": "󰂠 ",
+            "dnd-none": "󰪓 ",
+            "inhibited-notification": "󰂛 ",
+            "inhibited-none": "󰪑 ",
+            "dnd-inhibited-notification": "󰂛 ",
+            "dnd-inhibited-none": "󰪑 "
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",                 // toggle panel
+        "on-click-right": "swaync-client -d -sw",          // toggle DND
+        "on-click-middle": "swaync-client -C -sw",         // clear all
+        "on-scroll-up": "swaync-client -d -sw",            // scroll up => DND
+        "on-scroll-down": "swaync-client -d -sw",          // scroll down => DND
+        "escape": true
     }
 }

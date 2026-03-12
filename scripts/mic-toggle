@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+NOTIFICATION_TIMEOUT=1000
+NOTIFICATION_APP_NAME="System Controls"
+
+MUTED=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -o 'MUTED')
+
+if [ "$MUTED" = "MUTED" ]; then
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0
+    notify-send -t "$NOTIFICATION_TIMEOUT" -a "$NOTIFICATION_APP_NAME" -i "" "Microphone " "Mic unmuted"  
+else
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
+    notify-send -t "$NOTIFICATION_TIMEOUT" -a "$NOTIFICATION_APP_NAME" -i "" "Microphone 󰍭" "Mic muted"
+fi

@@ -1,0 +1,132 @@
+* {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 13px;
+}
+
+.control-center {
+  background: #2e3440;
+  color: #d8dee9;
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid #3b4252;
+}
+
+/* generic widget cards */
+.widget-volume,
+.widget-backlight,
+.widget-mpris,
+.widget-title,
+.widget-dnd {
+  background: #3b4252;
+  border: 1px solid #434c5e;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+/* slider rows labels */
+.widget-volume label,
+.widget-backlight label {
+  color: #88c0d0;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* sliders */
+scale trough {
+  background: #434c5e;
+  border-radius: 999px;
+  min-height: 10px;
+}
+
+scale highlight {
+  background: #81a1c1;
+  border-radius: 999px;
+}
+
+scale slider {
+  background: #eceff4;
+  border-radius: 999px;
+  min-width: 14px;
+  min-height: 14px;
+}
+
+/* MPRIS */
+.widget-mpris .title {
+  color: #eceff4;
+  font-weight: 800;
+}
+
+.widget-mpris .artist,
+.widget-mpris .album {
+  color: #d8dee9;
+  opacity: 0.9;
+}
+
+.widget-mpris button {
+  background: #434c5e;
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.widget-mpris button:hover {
+  background: #4c566a;
+}
+
+/* notifications section header */
+.widget-title label {
+  color: #88c0d0;
+  font-weight: 800;
+}
+
+/* clear button */
+.widget-title button {
+  background: #434c5e;
+  color: #eceff4;
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+.widget-title button:hover {
+  background: #4c566a;
+}
+
+/* DND row */
+.widget-dnd label {
+  color: #81a1c1;
+  font-weight: 700;
+}
+
+/* notification cards */
+.notification {
+  background: #3b4252;
+  border: 1px solid #434c5e;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.notification:hover {
+  background: #434c5e;
+}
+
+.notification .summary {
+  color: #eceff4;
+  font-weight: 800;
+}
+
+.notification .body {
+  color: #d8dee9;
+}
+
+.notification.critical {
+  background: #bf616a;
+  border-color: #bf616a;
+}
+.notification .image {
+  border-radius: 8px;
+  min-width: 48px;
+  min-height: 48px;
+  max-width: 48px;
+  max-height: 48px;
+}
