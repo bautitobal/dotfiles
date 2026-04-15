@@ -1,9 +1,27 @@
 BasedOnStyle: LLVM
+
+# Indentación
 IndentWidth: 4
 TabWidth: 4
 UseTab: Never
+
+# No romper líneas largas
+ColumnLimit: 0
+
+# Llaves estilo Allman
 BreakBeforeBraces: Allman
-AllowShortIfStatementsOnASingleLine: false
+
+# Evitar compactar cosas en una sola línea
+AllowShortIfStatementsOnASingleLine: Never
 AllowShortLoopsOnASingleLine: false
-# asegurar que los bloques siempre se expandan
+AllowShortFunctionsOnASingleLine: None
+
+# Siempre expandir bloques cuando corresponda
 AlwaysBreakBeforeMultilineStrings: true
+
+# Espaciado y claridad
+SpaceBeforeParens: ControlStatements
+SpacesInParentheses: false
+
+# Mantener estructura clara en if/else
+IndentCaseLabels: true

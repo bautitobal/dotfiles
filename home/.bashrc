@@ -8,7 +8,7 @@ fi
 # PATH
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 export PATH="$PATH:$HOME/.spicetify"
-export TZ=America/Buenos_Aires
+export TZ=America/Argentina/Buenos_Aires
 
 # HISTORIAL (mejorado)
 export HISTSIZE=5000
