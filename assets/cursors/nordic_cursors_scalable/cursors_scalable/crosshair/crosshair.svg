@@ -1,0 +1,19 @@
+<svg height="32" width="32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <linearGradient id="a">
+    <stop offset="0" stop-color="#3b4252"/>
+    <stop offset="1" stop-color="#3b4252" stop-opacity=".50435"/>
+  </linearGradient>
+  <linearGradient id="b" gradientUnits="userSpaceOnUse" x1="24" x2="18" xlink:href="#a" y1="17" y2="17"/>
+  <linearGradient id="c" gradientTransform="matrix(-1 0 0 1 685 -489.36)" gradientUnits="userSpaceOnUse" x1="674" x2="668" xlink:href="#a" y1="506.36" y2="506.36"/>
+  <linearGradient id="d" gradientTransform="matrix(0 1 -1 0 524.374 -649.986)" gradientUnits="userSpaceOnUse" x1="674" x2="668" xlink:href="#a" y1="506.36" y2="506.36"/>
+  <linearGradient id="e" gradientTransform="matrix(0 -1 -1 0 524.38 685.01)" gradientUnits="userSpaceOnUse" x1="674" x2="668" xlink:href="#a" y1="506.36" y2="506.36"/>
+  <filter id="f" color-interpolation-filters="sRGB" height="1.2664" width="1.2664" x="-.1332" y="-.1332">
+    <feGaussianBlur stdDeviation="1.24875"/>
+  </filter>
+  <path d="m17.5 7.25c-.45833 0-.9025.25542-1.1562.59375s-.34375.73958-.34375 1.1562v7h3v-7c0-.41667-.09-.81792-.34375-1.1562s-.69792-.59375-1.1562-.59375zm-9.5 9.75c-.41667 0-.81792.09-1.1562.34375s-.59375.69792-.59375 1.1562.25542.9025.59375 1.1562.73958.34375 1.1562.34375h8v8c0 .41667.09.81792.34375 1.1562s.69792.59375 1.1562.59375.9025-.25542 1.1562-.59375.34375-.73958.34375-1.1562v-8h8c.41667 0 .81792-.09 1.1562-.34375s.59375-.69792.59375-1.1562-.25542-.9025-.59375-1.1562-.73958-.34375-1.1562-.34375h-8v2h-3v-2z" filter="url(#f)" opacity=".2"/>
+  <path d="m17.5 6.2628c-.45833 0-.9025.25542-1.1562.59375s-.34375.73958-.34375 1.1562v8h-8c-.41667 0-.81792.09-1.1562.34375s-.59375.69792-.59375 1.1562.25542.9025.59375 1.1562.73958.34375 1.1562.34375h8v8c0 .41667.09.81792.34375 1.1562s.69792.59375 1.1562.59375.9025-.25542 1.1562-.59375.34375-.73958.34375-1.1562v-8h8c.41667 0 .81792-.09 1.1562-.34375s.59375-.69792.59375-1.1562-.25542-.9025-.59375-1.1562-.73958-.34375-1.1562-.34375h-8v-8c0-.41667-.09-.81792-.34375-1.1562s-.69792-.59375-1.1562-.59375zm0 1c.25 0 .5.25.5.75v9h9c1 0 1 1 0 1h-9v9c0 1-1 1-1 0v-9h-9c-1 0-1-1 0-1h9v-9c0-.5.25-.75.5-.75z" fill="#d8dee9"/>
+  <path d="m18 17.013v1h9c1 0 1-1 0-1z" fill="url(#b)"/>
+  <path d="m17 17.013v1h-9c-1 0-1-1 0-1z" fill="url(#c)"/>
+  <path d="m18 18.013h-1v9c0 1 1 1 1 0z" fill="url(#d)"/>
+  <path d="m18 17.013h-1v-9c0-1 1-1 1 0z" fill="url(#e)"/>
+</svg>
