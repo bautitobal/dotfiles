@@ -1,0 +1,589 @@
+$bg: rgba(24, 28, 37, 0.88);
+$fg: #d8dee9;
+$fg-dim: #aeb6c3;
+$blue: #81a1c1;
+$cyan: #88c0d0;
+$red: #bf616a;
+$orange: #d08770;
+$green: #a3be8c;
+$yellow: #ebcb8b;
+$border: rgba(129, 161, 193, 0.18);
+
+window.Bar {
+  background: transparent;
+  color: $fg;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.bar-inner {
+  background: $bg;
+  border: 1px solid $border;
+  border-radius: 0px; // 14px redondeado
+  margin: 4px 6px 0 6px; // 4px arriba, 6px horizontal, 0 abajo
+  min-height: 40px;
+  padding: 0 12px;
+}
+
+.bar-section {
+  min-width: 180px;
+}
+
+.bar-section.center {
+  min-width: 220px;
+}
+
+.Separator {
+  background: transparent;
+  color: $fg-dim;
+  padding: 0 4px;
+}
+
+/* workspaces */
+/*.Workspaces {
+  padding: 4px 0;
+}
+
+.Workspaces button {
+  background: transparent;
+  color: $fg-dim;
+  border: none;
+  border-radius: 10px;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 0 8px;
+}
+
+.Workspaces button:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: $fg;
+}
+
+.Workspaces button.occupied {
+  color: $cyan;
+}
+
+.Workspaces button.active {
+  background: rgba(255, 255, 255, 0.10);
+  color: $blue;
+}
+
+.Workspaces button.active.occupied {
+  background: rgba(129, 161, 193, 0.18);
+  color: $cyan;
+}*/
+
+.Workspaces {
+  padding: 2px 0;
+}
+
+.Workspaces button {
+  background: transparent;
+  color: $fg-dim;
+  border: none;
+  border-radius: 0;
+  min-width: 20px;
+  min-height: 28px;
+  padding: 0 2px 4px 2px;
+  box-shadow: none;
+}
+
+.Workspaces button label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.Workspaces button:hover {
+  background: transparent;
+  color: $fg;
+}
+
+/* ocupado (no activo) */
+.Workspaces button.occupied {
+  color: $cyan;
+  box-shadow: inset 0 -2px 0 0 rgba(216, 222, 233, 0.4);
+}
+
+/* activo */
+.Workspaces button.active {
+  background: transparent;
+  color: $blue;
+  box-shadow: inset 0 -2px 0 0 $blue;
+}
+
+/* activo + ocupado */
+.Workspaces button.active.occupied {
+  color: $cyan;
+  box-shadow: inset 0 -2px 0 0 $cyan;
+}
+
+/* contenedores */
+.Audio,
+.Tray {
+  background: transparent;
+}
+
+/* clock completamente limpio */
+.Clock {
+  background: transparent;
+  color: $fg;
+  border: none;
+  border-radius: 0;
+  min-height: 28px;
+  padding: 0 6px;
+  box-shadow: none;
+}
+
+.Clock label {
+  color: $fg;
+  margin: 0 1px;
+}
+
+.Clock:hover,
+.Clock:active,
+.Clock:checked {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* widgets derecha */
+.AudioItem,
+.Network,
+.Cpu,
+.Ram,
+.Temp {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  min-height: 28px;
+  padding: 0 4px;
+  box-shadow: none;
+}
+
+/* colores por modulo */
+/*.Network,
+.Network label {
+  color: $green;
+}
+
+.Cpu,
+.Cpu label {
+  color: $blue;
+}*/
+
+.Ram,
+.Ram label {
+  color: $cyan;
+}
+
+/* hover muy sutil solo derecha */
+.Network:hover,
+.AudioItem:hover,
+.Cpu:hover,
+.Ram:hover,
+.Temp:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* tray */
+.TrayButton {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  min-width: 22px;
+  min-height: 22px;
+  padding: 0 2px;
+}
+
+.TrayButton:hover,
+.TrayButton:active {
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: none;
+}
+
+.TrayIcon {
+  -gtk-icon-size: 16px;
+}
+
+/* labels */
+.AudioItem label,
+.Cpu label,
+.Ram label,
+.Temp label,
+.Network label {
+  margin: 0 1px;
+}
+
+/* separacion entre modulos */
+.bar-section.right > * {
+  margin-left: 8px;
+}
+
+.bar-section.right > *:first-child {
+  margin-left: 0;
+}
+
+
+/* colores dinamicos CPU */
+.Cpu.normal,
+.Cpu.normal label {
+  color: $blue;
+}
+
+.Cpu.warn,
+.Cpu.warn label {
+  color: $yellow;
+}
+
+.Cpu.critical,
+.Cpu.critical label {
+  color: $red;
+}
+
+/* colores dinamicos TEMP */
+.Temp.normal,
+.Temp.normal label {
+  color: $green;
+}
+
+.Temp.warn,
+.Temp.warn label {
+  color: $orange;
+}
+
+.Temp.critical,
+.Temp.critical label {
+  color: $red;
+}
+
+/* colores dinamicos NETWORK */
+.Network.wifi,
+.Network.wifi label {
+  color: $green;
+}
+
+.Network.ethernet,
+.Network.ethernet label {
+  color: $blue;
+}
+
+.Network.weak,
+.Network.weak label {
+  color: $yellow;
+}
+
+.Network.offline,
+.Network.offline label {
+  color: $fg-dim;
+}
+
+/* colores dinamicos AUDIO */
+.AudioItem.speaker.normal,
+.AudioItem.speaker.normal label {
+  color: $fg;
+}
+
+.AudioItem.speaker.muted,
+.AudioItem.speaker.muted label {
+  color: $red;
+}
+
+.AudioItem.mic.normal,
+.AudioItem.mic.normal label {
+  color: $cyan;
+}
+
+.AudioItem.mic.muted,
+.AudioItem.mic.muted label {
+  color: $fg-dim;
+}
+
+
+.UserHost {
+  background: transparent;
+  padding: 0 2px;
+}
+
+.userhost-main {
+  color: $blue;
+}
+
+.userhost-symbol {
+  color: #ffd700;
+}
+
+.Battery {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  min-height: 28px;
+  padding: 0 4px;
+  box-shadow: none;
+}
+
+.Battery:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.Battery.normal,
+.Battery.normal label {
+  color: $green;
+}
+
+.Battery.charging,
+.Battery.charging label {
+  color: $blue;
+}
+
+.Battery.low,
+.Battery.low label {
+  color: $yellow;
+}
+
+.Battery.critical,
+.Battery.critical label {
+  color: $red;
+}
+
+.Battery.full,
+.Battery.full label {
+  color: $cyan;
+}
+
+.Battery.hidden {
+  opacity: 0;
+}
+
+// NOTIFICATIONS
+.NotificationsButton {
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  min-height: 28px;
+  padding: 0 4px;
+  box-shadow: none;
+  color: $fg;
+}
+
+.NotificationsButton:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.NotificationsButton.active,
+.NotificationsButton.active label {
+  color: $blue;
+}
+
+.notifications-count {
+  color: $yellow;
+}
+
+.NotificationsPanelWindow {
+  background: transparent;
+}
+
+.NotificationsPanel {
+  background: rgba(24, 28, 37, 0.96);
+  border: 1px solid $border;
+  border-radius: 14px;
+  min-width: 360px;
+  padding: 12px;
+  margin: 8px 10px 0 0;
+}
+
+.notifications-header {
+  margin-bottom: 10px;
+}
+
+.notifications-title {
+  color: $fg;
+  font-weight: 700;
+}
+
+.notifications-clear,
+.notifications-close {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: $fg-dim;
+  padding: 0 6px;
+}
+
+.notifications-clear:hover,
+.notifications-close:hover {
+  color: $fg;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.NotificationsScroll {
+  background: transparent;
+}
+
+.NotificationsList {
+  background: transparent;
+}
+
+.NotificationItem {
+  background: rgba(36, 41, 51, 0.85);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.notification-top {
+  margin-bottom: 6px;
+}
+
+.notification-app {
+  color: $blue;
+  font-weight: 700;
+}
+
+.notification-close {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: $fg-dim;
+  padding: 0 4px;
+}
+
+.notification-close:hover {
+  color: $fg;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.notification-summary {
+  color: $fg;
+  font-weight: 700;
+}
+
+.notification-body {
+  color: $fg-dim;
+  margin-top: 4px;
+}
+
+.notification-id {
+  color: rgba(216, 222, 233, 0.35);
+  margin-top: 6px;
+  font-size: 11px;
+}
+
+.NotificationsEmpty {
+  padding: 20px 0;
+}
+
+.NotificationsEmpty label {
+  color: $fg-dim;
+}
+
+// POPUPS
+/*.NotificationPopupsWindow {
+  background: transparent;
+}
+
+.NotificationPopups {
+  background: transparent;
+  min-width: 360px;
+  margin: 52px 10px 0 0;
+}
+
+.NotificationPopupItem {
+  background: rgba(24, 28, 37, 0.96);
+  border: 1px solid $border;
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+
+.notification-popup-top {
+  margin-bottom: 6px;
+}
+
+.notification-popup-app {
+  color: $blue;
+  font-weight: 700;
+}
+
+.notification-popup-close {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: $fg-dim;
+  padding: 0 4px;
+}
+
+.notification-popup-close:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: $fg;
+}
+
+.notification-popup-summary {
+  color: $fg;
+  font-weight: 700;
+}
+
+.notification-popup-body {
+  color: $fg-dim;
+  margin-top: 4px;
+}
+
+.notification-popup-id {
+  color: rgba(216, 222, 233, 0.35);
+  margin-top: 6px;
+  font-size: 11px;
+}*/
+
+.NotificationPopupsWindow {
+  background: transparent;
+}
+
+.NotificationPopups {
+  background: transparent;
+  min-width: 360px;
+  margin: 56px 10px 0 0;
+}
+
+.NotificationPopupItem {
+  background: rgba(24, 28, 37, 0.96);
+  border: 1px solid $border;
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+
+.notification-popup-top {
+  margin-bottom: 6px;
+}
+
+.notification-popup-app {
+  color: $blue;
+  font-weight: 700;
+}
+
+.notification-popup-close {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: $fg-dim;
+  padding: 0 4px;
+}
+
+.notification-popup-close:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: $fg;
+}
+
+.notification-popup-summary {
+  color: $fg;
+  font-weight: 700;
+}
+
+.notification-popup-body {
+  color: $fg-dim;
+  margin-top: 4px;
+}
+
+.notification-popup-id {
+  color: rgba(216, 222, 233, 0.35);
+  margin-top: 6px;
+  font-size: 11px;
+}

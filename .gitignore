@@ -1,2 +1,17 @@
 .env
 .git
+
+# dependencies
+node_modules/
+@girs/
+
+# builds
+dist/
+build/
+.cache/
+
+# logs
+*.log
+
+# system
+.DS_Store
