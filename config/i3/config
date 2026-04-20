@@ -1,0 +1,205 @@
+set $mod Mod4
+font pango:JetBrainsMono Nerd Font 10
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# Apps
+set $terminal kitty
+set $terminal2 foot
+set $fileManager nautilus
+set $menu rofi -show drun
+set $browser brave --ozone-platform=x11
+set $browser2 firefox
+
+# Autostart
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
+exec --no-startup-id dunst
+exec --no-startup-id nm-applet
+exec --no-startup-id polybar main
+
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Appearance
+gaps inner 10
+gaps outer 6
+default_border pixel 2
+default_floating_border pixel 2
+
+# Nord colors
+client.focused          #81A1C1 #81A1C1 #2E3440 #D8DEE9 #81A1C1
+client.focused_inactive #4C566A #3B4252 #2E3440 #D8DEE9 #4C566A
+client.unfocused        #3B4252 #2E3440 #2E3440 #D8DEE9 #3B4252
+client.urgent           #BF616A #BF616A #2E3440 #ECEFF4 #BF616A
+client.placeholder      #4C566A #4C566A #2E3440 #D8DEE9 #4C566A
+client.background       #2E3440
+
+# Keyboard layouts + toggle
+exec_always --no-startup-id setxkbmap -model pc104 -layout us,latam -option grp:alt_space_toggle
+exec_always --no-startup-id xset r rate 250 35
+focus_follows_mouse yes
+
+# Mouse: Logitech
+exec_always --no-startup-id xinput set-prop "logitech-wireless-mouse-1" "libinput Accel Speed" -0.2
+exec_always --no-startup-id xinput set-prop "logitech-wireless-mouse-1" "libinput Middle Emulation Enabled" 1
+
+# Mouse: SteelSeries
+exec_always --no-startup-id xinput set-prop "steelseries-steelseries-rival-600" "libinput Accel Speed" -0.2
+exec_always --no-startup-id xinput set-prop "steelseries-steelseries-rival-600" "libinput Middle Emulation Enabled" 1
+
+
+# Workspace -> output mapping
+workspace 1 output DP-1
+workspace 2 output DP-1
+workspace 3 output DP-1
+workspace 4 output DP-1
+workspace 5 output DP-1
+
+workspace 6 output HDMI-A-1
+workspace 7 output HDMI-A-1
+workspace 8 output HDMI-A-1
+workspace 9 output HDMI-A-1
+workspace 10 output HDMI-A-1
+
+
+### BINDS ###
+# Apps
+bindsym $mod+Return exec $terminal
+bindsym $mod+Shift+Return exec $terminal2
+bindsym $mod+e exec $fileManager
+bindsym $mod+d exec $menu
+bindsym $mod+b exec $browser
+bindsym $mod+Ctrl+Shift+l exec i3lock-color
+bindsym $mod+Shift+w exec waypaper
+bindsym $mod+Shift+p exec ~/.config/rofi/powermenu.sh
+bindsym $mod+Shift+r reload
+bindsym $mod+Shift+c restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+o exec obsidian
+bindsym $mod+p exec keepassxc
+bindsym $mod+Shift+period exec rofimoji
+
+# Window management
+bindsym $mod+q kill
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+Tab focus mode_toggle
+
+# Layout equivalents
+bindsym $mod+g layout toggle split
+bindsym $mod+Shift+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+v split v
+bindsym $mod+semicolon split h
+
+# Scripts
+bindsym $mod+Shift+x exec ~/dotfiles/scripts/toggle-polybar.sh
+bindsym $mod+Shift+z exec ~/dotfiles/scripts/zen-mode.sh
+bindsym $mod+m exec ~/dotfiles/scripts/mic-toggle
+
+# Screenshots
+bindsym Print exec ~/dotfiles/scripts/screenshot.sh copy
+bindsym Shift+Print exec ~/dotfiles/scripts/screenshot.sh area
+bindsym Control+Print exec ~/dotfiles/scripts/screenshot.sh monitor
+bindsym Mod1+Print exec ~/dotfiles/scripts/screenshot.sh all
+
+# Focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Resize mode
+mode "resize" {
+    bindsym h resize shrink width 20 px or 10 ppt
+    bindsym j resize grow height 20 px or 10 ppt
+    bindsym k resize shrink height 20 px or 10 ppt
+    bindsym l resize grow width 20 px or 10 ppt
+
+    bindsym Left resize shrink width 20 px or 10 ppt
+    bindsym Down resize grow height 20 px or 10 ppt
+    bindsym Up resize shrink height 20 px or 10 ppt
+    bindsym Right resize grow width 20 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+Ctrl+r mode "resize"
+
+# Scratchpad
+bindsym $mod+s scratchpad show
+bindsym $mod+Shift+minus move scratchpad
+
+# Center current floating window quickly
+bindsym $mod+c floating toggle, move position center
+
+# Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1; workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2; workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3; workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4; workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5; workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6; workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7; workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8; workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9; workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10; workspace number $ws10
+
+# Mouse
+bindsym --whole-window $mod+button4 workspace prev
+bindsym --whole-window $mod+button5 workspace next
+
+# Multimedia
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioPrev exec playerctl previous
