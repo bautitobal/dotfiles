@@ -17,7 +17,12 @@ set $browser2 firefox
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 exec --no-startup-id dunst
 exec --no-startup-id nm-applet
-exec_always --no-startup-id polybar main
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --rate 60 --pos 0x0 --output DP-0 --mode 1920x1080 --rate 144 --primary --pos 1920x0
+
+# Start on workspace 1 / primary monitor
+exec_always --no-startup-id i3-msg "workspace 1"
+exec_always --no-startup-id xdotool mousemove 2880 540
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -57,18 +62,18 @@ exec_always --no-startup-id xinput set-prop "steelseries-steelseries-rival-600" 
 exec_always --no-startup-id xinput set-prop "steelseries-steelseries-rival-600" "libinput Middle Emulation Enabled" 1
 
 
-# Workspace -> output mapping
-workspace 1 output DP-1
-workspace 2 output DP-1
-workspace 3 output DP-1
-workspace 4 output DP-1
-workspace 5 output DP-1
+# Workspace -> output mapping (forgot to xrandr before assuming monitor name)
+workspace 1 output DP-0
+workspace 2 output DP-0
+workspace 3 output DP-0
+workspace 4 output DP-0
+workspace 5 output DP-0
 
-workspace 6 output HDMI-A-1
-workspace 7 output HDMI-A-1
-workspace 8 output HDMI-A-1
-workspace 9 output HDMI-A-1
-workspace 10 output HDMI-A-1
+workspace 6 output HDMI-0
+workspace 7 output HDMI-0
+workspace 8 output HDMI-0
+workspace 9 output HDMI-0
+workspace 10 output HDMI-0
 
 
 ### BINDS ###
