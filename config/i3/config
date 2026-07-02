@@ -19,6 +19,7 @@ exec --no-startup-id dunst
 exec --no-startup-id nm-applet
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --rate 60 --pos 0x0 --output DP-0 --mode 1920x1080 --rate 144 --primary --pos 1920x0
+exec_always --no-startup-id export ELECTRON_OZONE_PLATFORM_HINT=auto   
 
 # Start on workspace 1 / primary monitor
 exec_always --no-startup-id i3-msg "workspace 1"

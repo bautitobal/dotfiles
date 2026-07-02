@@ -68,13 +68,6 @@ alias la='ls -A'
 alias cl='clear'
 alias c='clear'
 
-# Pacman y AUR
-alias pacs='sudo pacman -S'
-alias pacr='sudo pacman -Rns'
-alias pacu='sudo pacman -Syu'
-alias paru='paru -S'
-alias paruu='paru -Syu'
-
 # Navegación rápida
 alias ..='cd ..'
 alias ...='cd ../..'
