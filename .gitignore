@@ -15,3 +15,8 @@ build/
 
 # system
 .DS_Store
+
+# Local personal data and generated first-use state
+/home/.face.png
+/config/kde/kwalletrc
+/docs/

@@ -1,2 +1,6 @@
-[Mouse]
-cursorTheme=capitaine-cursors
+[Libinput][4152][5924][SteelSeries SteelSeries Rival 600]
+PointerAccelerationProfile=1
+ScrollMethod=4
+
+[Libinput][7511][64096][LXDDZ 2.4G Wireless Device]
+ScrollMethod=4
